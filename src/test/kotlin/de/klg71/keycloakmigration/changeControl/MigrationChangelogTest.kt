@@ -20,7 +20,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
-import org.mockito.kotlin.*
 import org.slf4j.LoggerFactory
 import java.util.UUID.randomUUID
 
