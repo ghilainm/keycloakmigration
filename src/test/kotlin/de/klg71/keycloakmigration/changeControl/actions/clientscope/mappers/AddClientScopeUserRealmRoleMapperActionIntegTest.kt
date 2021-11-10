@@ -5,7 +5,6 @@ import de.klg71.keycloakmigration.changeControl.actions.clientscope.AddClientSco
 import de.klg71.keycloakmigration.changeControl.actions.clientscope.mapper.AddClientScopeUserRealmRoleMapperAction
 import de.klg71.keycloakmigration.keycloakapi.KeycloakClient
 import de.klg71.keycloakmigration.keycloakapi.clientScopeUUID
-import de.klg71.keycloakmigration.keycloakapi.clientUUID
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.koin.core.component.inject

@@ -30,8 +30,9 @@ class DeleteUserAttributeIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             DeleteUserAttributeAction(testRealm, "test", "testAttribute").executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Attribute testAttribute is not present on user test!")
+            .hasMessage("Attribute testAttribute is not present on user test!")
     }
+
     @Test
     fun testDeleteUserAttribute_notExisting_failOnMissingFalse() {
         AddUserAction(testRealm, "test").executeIt()

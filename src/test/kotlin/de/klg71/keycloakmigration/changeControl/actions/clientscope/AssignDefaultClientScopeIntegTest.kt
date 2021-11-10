@@ -33,7 +33,7 @@ class AssignDefaultClientScopeIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             AssignDefaultClientScopeAction(testRealm, scopeName, clientId).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("ClientScope with name: $scopeName does not exist in realm: ${testRealm}!")
+            .hasMessage("ClientScope with name: $scopeName does not exist in realm: ${testRealm}!")
     }
 
     @Test
@@ -43,7 +43,7 @@ class AssignDefaultClientScopeIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             AssignDefaultClientScopeAction(testRealm, scopeName, clientId).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Client with id: $clientId does not exist in realm: ${testRealm}!")
+            .hasMessage("Client with id: $clientId does not exist in realm: ${testRealm}!")
     }
 
     @Test

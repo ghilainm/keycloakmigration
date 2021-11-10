@@ -61,7 +61,8 @@ class AddIdentityProviderIntegTest : AbstractIntegrationTest() {
                 testRealm, "test", "keycloak-oidc", config, displayName = "displayName", true, true, true, true,
                 "first broker login", ""
             ).executeIt()
-        }.isInstanceOf(MigrationException::class.java).hasMessage("Identity Provider with alias: test already exists in realm: test!")
+        }.isInstanceOf(MigrationException::class.java)
+            .hasMessage("Identity Provider with alias: test already exists in realm: test!")
 
     }
 }

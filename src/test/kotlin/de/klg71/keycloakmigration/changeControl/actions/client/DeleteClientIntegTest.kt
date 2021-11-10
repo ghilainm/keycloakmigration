@@ -15,6 +15,6 @@ class DeleteClientIntegTest : AbstractIntegrationTest() {
         AddSimpleClientAction(testRealm, "simpleClient").executeIt()
         DeleteClientAction(testRealm, "simpleClient").executeIt()
 
-        assertThat(client.clients(testRealm).firstOrNull{it.name=="simpleClient"}).isNull()
+        assertThat(client.clients(testRealm).firstOrNull { it.name == "simpleClient" }).isNull()
     }
 }

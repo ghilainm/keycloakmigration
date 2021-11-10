@@ -13,7 +13,7 @@ plugins {
     // Security check for dependencies by task
     id("org.owasp.dependencycheck") version "5.3.0"
     // static code analysis
-    id("io.gitlab.arturbosch.detekt") version "1.7.0-beta1"
+    id("io.gitlab.arturbosch.detekt") version "1.19.0-RC1"
 
     id("com.github.johnrengelman.shadow") version "6.0.0" apply (false)
 }
@@ -45,7 +45,6 @@ dependencies {
 
     testImplementation("org.assertj:assertj-core:3.11.1")
     testImplementation("io.insert-koin:koin-test:3.1.3")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
     testImplementation("org.assertj:assertj-core:3.11.1")
     testImplementation("com.github.tomakehurst:wiremock-jre8:2.27.0")
 }

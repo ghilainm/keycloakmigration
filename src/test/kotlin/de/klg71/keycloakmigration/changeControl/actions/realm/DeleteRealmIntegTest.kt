@@ -26,7 +26,7 @@ class DeleteRealmIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             DeleteRealmAction("testRealm").executeIt()
         }.isInstanceOf(KeycloakApiException::class.java)
-                .hasMessage("Realm with id: testRealm does not exist!")
+            .hasMessage("Realm with id: testRealm does not exist!")
 
     }
 }

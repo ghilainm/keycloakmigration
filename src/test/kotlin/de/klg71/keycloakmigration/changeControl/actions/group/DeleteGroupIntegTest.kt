@@ -1,7 +1,6 @@
 package de.klg71.keycloakmigration.changeControl.actions.group
 
 import de.klg71.keycloakmigration.AbstractIntegrationTest
-import de.klg71.keycloakmigration.changeControl.actions.MigrationException
 import de.klg71.keycloakmigration.keycloakapi.KeycloakApiException
 import de.klg71.keycloakmigration.keycloakapi.KeycloakClient
 import de.klg71.keycloakmigration.keycloakapi.existsGroup
@@ -27,6 +26,6 @@ class DeleteGroupIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             DeleteGroupAction(testRealm, "integrationTest").executeIt()
         }.isInstanceOf(KeycloakApiException::class.java)
-                .hasMessage("Group with name: integrationTest does not exist in realm: ${testRealm}!")
+            .hasMessage("Group with name: integrationTest does not exist in realm: ${testRealm}!")
     }
 }

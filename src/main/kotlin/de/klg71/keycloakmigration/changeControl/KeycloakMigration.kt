@@ -12,7 +12,7 @@ import java.util.UUID
  * Execute the keycloakmigration
  */
 internal class KeycloakMigration(private val migrationFile: String, realm: String,
-                                 private val correctHashes: Boolean) : KoinComponent {
+    private val correctHashes: Boolean) : KoinComponent {
     private val migrationUserId by inject<UUID>(named("migrationUserId"))
     private val changeFileReader = ChangeFileReader()
     private val changelog = MigrationChangelog(migrationUserId, realm)
@@ -26,7 +26,7 @@ internal class KeycloakMigration(private val migrationFile: String, realm: Strin
         try {
             changeFileReader.changes(migrationFile).let {
                 changelog.changesTodo(it, correctHashes)
-            }.forEach{ change ->
+            }.forEach { change ->
                 LOG.info("Executing change: ${change.id}:${change.author}")
                 doChange(change)
             }
@@ -49,7 +49,7 @@ internal class KeycloakMigration(private val migrationFile: String, realm: Strin
                 changelog.writeChangeToUser(change)
                 LOG.info("Migration ${change.id}:${change.author} Successful executed: $size actions.")
             } catch (e: Exception) {
-                LOG.error("Error occurred while migrating: ${e.message} ", e)
+                LOG.error("Error occurred while migrating: ${change.id} ", e)
                 LOG.error("Rolling back changes")
                 rollback()
                 throw e

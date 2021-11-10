@@ -31,8 +31,9 @@ class AddKeycloakIdentityProviderIntegTest : AbstractIntegrationTest() {
             defaultScopes = scopes, issuer = issuer
         ).executeIt()
 
-        val identityProvider = client.identityProvider(testRealm
-            , "test")
+        val identityProvider = client.identityProvider(
+            testRealm, "test"
+        )
 
         assertThat(identityProvider.alias).isEqualTo("test")
         assertThat(identityProvider.providerId).isEqualTo("keycloak-oidc")

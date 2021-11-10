@@ -30,7 +30,7 @@ class AddUserAttributeIntegTest : AbstractIntegrationTest() {
         Assertions.assertThatThrownBy {
             AddUserAttributeAction(testRealm, "test", "testAttribute", listOf("testValue1", "testValue2")).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Attribute testAttribute is already present on user test!")
+            .hasMessage("Attribute testAttribute is already present on user test!")
     }
 
     @Test

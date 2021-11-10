@@ -34,28 +34,33 @@ internal class ChangeFileReader : KoinComponent {
     // Actually Jackson can parse null into ChangeSet through reflection
     @Suppress("SENSELESS_COMPARISON")
     internal fun changes(fileName: String): List<ChangeSet> =
-            readYamlFile<ChangeLog>(fileName).includes.map {
-                val path = if (it.relativeToFile) {
-                    parentPath(fileName, it.path)
-                } else {
-                    File(it.path).absoluteFile.toPath()
-                }
-                readYamlFile<ChangeSet>(path.toString()).apply {
-                    // senseless comparision see method signature
-                    if (changes.any { change -> change == null }) {
-                        throw ParseException(
-                                "Unable to parse: ${parentPath(fileName,
-                                        it.path)}, check formatting or report a bug report!")
-                    }
-                    changes.forEach { action ->
-                        action.path = path.parent.toString()
-                    }
-                    hash = sha256Hex(readString(path))
-                }
+        readYamlFile<ChangeLog>(fileName).includes.map {
+            val path = if (it.relativeToFile) {
+                parentPath(fileName, it.path)
+            } else {
+                File(it.path).absoluteFile.toPath()
             }
+            readYamlFile<ChangeSet>(path.toString()).apply {
+                // senseless comparision see method signature
+                if (changes.any { change -> change == null }) {
+                    throw ParseException(
+                        "Unable to parse: ${
+                            parentPath(
+                                fileName,
+                                it.path
+                            )
+                        }, check formatting or report a bug report!"
+                    )
+                }
+                changes.forEach { action ->
+                    action.path = path.parent.toString()
+                }
+                hash = sha256Hex(readString(path))
+            }
+        }
 
     private fun parentPath(fileName: String, path: String) =
-            Paths.get(File(fileName).absoluteFile.parentFile.absolutePath, path)
+        Paths.get(File(fileName).absoluteFile.parentFile.absolutePath, path)
 
     private inline fun <reified T> readYamlFile(fileName: String): T {
         if (!File(fileName).exists()) {
@@ -67,7 +72,8 @@ internal class ChangeFileReader : KoinComponent {
             }
         } catch (e: JsonProcessingException) {
             throw ParseException(
-                    "Unable to parse: $fileName, check formatting or report a bug report!", e)
+                "Unable to parse: $fileName, check formatting or report a bug report!", e
+            )
         }
     }
 

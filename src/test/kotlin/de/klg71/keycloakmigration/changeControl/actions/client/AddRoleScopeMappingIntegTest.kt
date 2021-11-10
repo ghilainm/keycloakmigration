@@ -37,14 +37,18 @@ class AddRoleScopeMappingIntegTest : AbstractIntegrationTest() {
         AddSimpleClientAction(testRealm, clientId).executeIt()
         val roleClientId = "testRoleClient"
         AddSimpleClientAction(testRealm, roleClientId).executeIt()
-        AddRoleAction(testRealm, role,clientId= roleClientId).executeIt()
+        AddRoleAction(testRealm, role, clientId = roleClientId).executeIt()
 
         AddRoleScopeMappingAction(testRealm, role, clientId, roleClientId).executeIt()
 
-        val testRoleScopeMapping = RoleListItem(UUID.randomUUID(), role, null, false, true,
-                client.clientUUID(roleClientId,testRealm).toString())
+        val testRoleScopeMapping = RoleListItem(
+            UUID.randomUUID(), role, null, false, true,
+            client.clientUUID(roleClientId, testRealm).toString()
+        )
 
-        client.clientRoleScopeMappingsOfClient(testRealm, client.clientUUID(clientId, testRealm), client.clientUUID(roleClientId,testRealm)).let {
+        client.clientRoleScopeMappingsOfClient(
+            testRealm, client.clientUUID(clientId, testRealm), client.clientUUID(roleClientId, testRealm)
+        ).let {
             assertThat(it).usingElementComparatorOnFields("name", "containerId").contains(testRoleScopeMapping)
         }
     }
@@ -68,13 +72,15 @@ class AddRoleScopeMappingIntegTest : AbstractIntegrationTest() {
         AddSimpleClientAction(testRealm, clientId).executeIt()
         val roleClientId = "testRoleClient"
         AddSimpleClientAction(testRealm, roleClientId).executeIt()
-        AddRoleAction(testRealm, role,clientId= roleClientId).executeIt()
+        AddRoleAction(testRealm, role, clientId = roleClientId).executeIt()
         val addRoleScopeMappingAction = AddRoleScopeMappingAction(testRealm, role, clientId, roleClientId)
         addRoleScopeMappingAction.executeIt()
 
         addRoleScopeMappingAction.undoIt()
 
-        client.clientRoleScopeMappingsOfClient(testRealm, client.clientUUID(clientId, testRealm), client.clientUUID(roleClientId,testRealm)).let {
+        client.clientRoleScopeMappingsOfClient(
+            testRealm, client.clientUUID(clientId, testRealm), client.clientUUID(roleClientId, testRealm)
+        ).let {
             assertThat(it).isEmpty()
         }
     }
@@ -86,7 +92,7 @@ class AddRoleScopeMappingIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             AssignRoleToClientAction(testRealm, role, clientId).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Client with name: $clientId does not exist in realm: ${testRealm}!")
+            .hasMessage("Client with name: $clientId does not exist in realm: ${testRealm}!")
     }
 
     @Test
@@ -95,7 +101,7 @@ class AddRoleScopeMappingIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             AssignRoleToClientAction(testRealm, role, clientId).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Role with name: $role does not exist in realm: ${testRealm}!")
+            .hasMessage("Role with name: $role does not exist in realm: ${testRealm}!")
     }
 
     @Test
@@ -105,7 +111,7 @@ class AddRoleScopeMappingIntegTest : AbstractIntegrationTest() {
         assertThatThrownBy {
             AssignRoleToClientAction(testRealm, role, clientId, "testRoleClient").executeIt()
         }.isInstanceOf(MigrationException::class.java)
-                .hasMessage("Role with name: $role in client: testRoleClient does not exist in realm: $testRealm!")
+            .hasMessage("Role with name: $role in client: testRoleClient does not exist in realm: $testRealm!")
     }
 
 }

@@ -64,7 +64,10 @@ class AddClientScopeMapperActionIntegTest : AbstractIntegrationTest() {
                 config, protocol, protocolMapper
             ).executeIt()
         }.isInstanceOf(MigrationException::class.java)
-            .hasMessage("Mapper with name: $mapperName already exists in client scope: $clientScopeName on realm: $testRealm!")
+            .hasMessage(
+                "Mapper with name: $mapperName already exists in client scope: $clientScopeName" +
+                        " on realm: $testRealm!"
+            )
 
     }
 

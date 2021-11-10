@@ -1,6 +1,5 @@
 package de.klg71.keycloakmigration.changeControl
 
-import org.mockito.kotlin.validateMockitoUsage
 import de.klg71.keycloakmigration.KoinLogger
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -29,7 +28,6 @@ class StringEnvSubstitutorTest {
 
     @After
     fun tearDown() {
-        validateMockitoUsage()
         stopKoin()
     }
 

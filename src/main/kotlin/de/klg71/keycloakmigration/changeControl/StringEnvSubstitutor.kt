@@ -7,7 +7,7 @@ import org.koin.core.component.inject
 import org.koin.core.qualifier.named
 
 internal open class StringEnvSubstitutor(private val failOnUndefinedVariables: Boolean = false,
-                                    private val warnOnUndefinedVariables: Boolean = true) : KoinComponent {
+    private val warnOnUndefinedVariables: Boolean = true) : KoinComponent {
 
     private val parameters: Map<String, String> by inject(named("parameters"))
 
@@ -54,5 +54,5 @@ internal open class StringEnvSubstitutor(private val failOnUndefinedVariables: B
     }
 
     private fun StringMatcher.matchesAt(value: String, position: Int) =
-            isMatch(value.toCharArray(), position, 0, value.length) > 0
+        isMatch(value.toCharArray(), position, 0, value.length) > 0
 }
